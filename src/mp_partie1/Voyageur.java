@@ -13,22 +13,24 @@ public class Voyageur extends Thread{
         this.nom = nom;
     }
 
+    /**
+     * Le voyageur essaie d'acheter un ticket, s'il en achete un il peut monter à bord sinon il est triste et s'en va
+     */
     @Override
     public void run() {
         EspaceVente ev = this.gare.getEspaceVente();
         EspaceQuai eq = this.gare.getEspaceQuai();
 
-        //Le voyageur essaie d'acheter un ticket, s'il en achete un il peut monter à bord sinon il est triste et s'en va
         try {
             if (ev.achatBillet()) {
-                System.out.println(this.getNom() + " A acheté un ticket !");
+                System.out.println(this.getNom() + " a acheté un ticket !");
                 try {
                     eq.monterABord(this);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }else{
-                System.out.println(this.getNom() + " N'a pas pu acheter un ticket et est parti...");
+                System.out.println(this.getNom() + " est submergé par la tristesse car il n'a pas pu acheter un ticket et est parti...");
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

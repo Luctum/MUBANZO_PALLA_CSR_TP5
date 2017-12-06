@@ -8,6 +8,8 @@ public class Gare{
 
     private EspaceQuai espaceQuai;
     private EspaceVente espaceVente;
+    private List<Train> trainsPrévus;
+    private List<Voyageur> voyageursEnGare;
 
     public Gare() {
         this.espaceVente = new EspaceVente(80, 100);
@@ -33,18 +35,18 @@ public class Gare{
     public static void main(String[] args){
         Gare g = new Gare();
 
-        List<Train> trains = new ArrayList<>();
-        List<Voyageur> voyageurs = new ArrayList<>();
+        g.trainsPrévus = new ArrayList<>();
+        g.voyageursEnGare = new ArrayList<>();
         for(int i = 0; i<5; i++){
-            trains.add(new Train(i, i*15+1, 10, 10000, g));
+            g.trainsPrévus.add(new Train(i, i*5+1, 1, 20000, g));
         }
         for(int i = 0; i<100; i++){
-            voyageurs.add(new Voyageur("Voyageur"+i, g));
+            g.voyageursEnGare.add(new Voyageur("Voyageur"+i, g));
         }
         //Les trains essaient d'entrer en quai
-        trains.forEach(Train::start);
+        g.trainsPrévus.forEach(Train::start);
         //Les voyageurs essaient d'obtenir un ticket + de monter dans les trains
-        voyageurs.forEach(Voyageur::start);
+        g.voyageursEnGare.forEach(Voyageur::start);
     }
 
 }
