@@ -42,7 +42,7 @@ public class EspaceQuai {
         notifyAll();
     }
 
-    public void removeTrain(Train train) {
+    public synchronized void removeTrain(Train train) {
         this.trainEnQuai.remove(train);
         notifyAll();
     }
