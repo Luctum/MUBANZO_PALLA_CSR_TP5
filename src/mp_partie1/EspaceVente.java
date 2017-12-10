@@ -11,22 +11,11 @@ public class EspaceVente {
         this.stockBilletMax = stockBilletMax;
     }
 
-    public int getBilletsDisponibles() {
-        return billetsDisponibles;
-    }
-
-    public void setBilletsDisponibles(int billetsDisponibles) {
-        this.billetsDisponibles = billetsDisponibles;
-    }
-
-    public int getstockBilletMax() {
-        return stockBilletMax;
-    }
-
-    public void setstockBilletMax(int stockBilletMax) {
-        this.stockBilletMax = stockBilletMax;
-    }
-
+    /**
+     * Achete un billet
+     * @return
+     * @throws InterruptedException
+     */
     public synchronized boolean achatBillet() throws InterruptedException {
         if(this.billetsDisponibles > 0 ){
             this.billetsDisponibles--;
@@ -34,11 +23,4 @@ public class EspaceVente {
         }
         return false;
     }
-
-    public synchronized void remplirStock(){
-            this.billetsDisponibles += (stockBilletMax - billetsDisponibles);
-    }
-
-
-
 }

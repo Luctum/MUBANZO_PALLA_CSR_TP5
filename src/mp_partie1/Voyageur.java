@@ -1,13 +1,15 @@
 package mp_partie1;
 
-import java.util.Iterator;
-import java.util.Optional;
-
 public class Voyageur extends Thread{
 
     private String nom;
     private Gare gare;
 
+    /**
+     *
+     * @param nom
+     * @param gare
+     */
     public Voyageur(String nom, Gare gare) {
         this.gare = gare;
         this.nom = nom;
@@ -39,17 +41,5 @@ public class Voyageur extends Thread{
 
     public String getNom() {
         return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public Gare getGare() {
-        return gare;
-    }
-
-    public void setGare(Gare gare) {
-        this.gare = gare;
     }
 }

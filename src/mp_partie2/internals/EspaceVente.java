@@ -27,6 +27,12 @@ public class EspaceVente {
         this.stockBilletMax = stockBilletMax;
     }
 
+    /**
+     * Achete un billet pour le voyageur v
+     * @param v
+     * @return
+     * @throws InterruptedException
+     */
     public synchronized boolean achatBillet(Voyageur v) throws InterruptedException {
         if(this.billetsDisponibles > 0 ){
             this.billetsDisponibles--;
@@ -36,11 +42,5 @@ public class EspaceVente {
         }
         return false;
     }
-
-    public synchronized void remplirStock(){
-            this.billetsDisponibles += (stockBilletMax - billetsDisponibles);
-    }
-
-
 
 }

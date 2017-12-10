@@ -22,24 +22,37 @@ public class Train extends Thread{
 
     private List<Voyageur> voyageurs;
 
+    /**
+     * @param idTrain
+     * @param vitesse
+     * @param capacite
+     * @param tmpsArret
+     * @param gare
+     */
     public Train(int idTrain, int vitesse, int capacite, int tmpsArret, Gare gare) {
         this.gare = gare;
         this.idTrain = idTrain;
         this.vitesse = vitesse;
         this.capacite = capacite;
         this.tmpsArret = tmpsArret;
-        this.voyageurs = new ArrayList<Voyageur>();
+        this.voyageurs = new ArrayList<>();
         this.etat = EtatTrain.A;
     }
 
+    /**
+     * Lancement du processus d'arrivée et de départ du train.
+     * Le train arrive s'il y a de la place en quai
+     * Il s'arrette pour prendre les voyageurs
+     * S'en vas au bout d'un certain temps
+     */
     @Override
     public void run() {
         try {
-            System.out.println("Le train est entré en gare:" + this.getidTrain());
             this.gare.getEspaceQuai().addTrain(this);
+            System.out.println("Le train est entré en gare: Train " + this.getidTrain());
             Thread.sleep(this.getTmpsArret());
             this.gare.getEspaceQuai().removeTrain(this);
-            System.out.println("Le train est parti de la gare" + this.getidTrain() + " avec " + this.getVoyageur().size() + " voyageurs");
+            System.out.println("Le train est parti de la gare : Train " + this.getidTrain() + " avec " + this.getVoyageur().size() + " voyageurs");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -15,14 +15,18 @@ public class EspaceQuai {
         this.trainEnQuai = new ArrayList<>();
     }
 
+    /**
+     * @return le nombre de voies libres
+     */
     public int nbVoiesLibres(){
         return nbVoie - this.trainEnQuai.size();
     }
 
-    public List<Train> getTrainsEnQuai() {
-        return this.trainEnQuai;
-    }
-
+    /**
+     * Ajout un train à la liste des trains si jamais une voie est disponible
+     * @param train
+     * @throws InterruptedException
+     */
     public synchronized void addTrain(Train train) throws InterruptedException {
         while(nbVoiesLibres() < 1) {
             train.etat = Train.EtatTrain.B;
@@ -34,6 +38,10 @@ public class EspaceQuai {
         notifyAll();
     }
 
+    /**
+     * Supprime un train de la liste des trains (départ)
+     * @param train
+     */
     public synchronized void removeTrain(Train train) {
         this.trainEnQuai.remove(train);
         train.etat = Train.EtatTrain.D;

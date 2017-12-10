@@ -15,29 +15,20 @@ public class Gare{
     public Gare() {
         this.espaceVente = new EspaceVente(80, 100);
         this.espaceQuai = new EspaceQuai(2);
+        this.trainsPrévus = new ArrayList<>();
+        this.voyageursEnGare = new ArrayList<>();
     }
 
     public EspaceQuai getEspaceQuai() {
         return espaceQuai;
     }
 
-    public void setEspaceQuai(EspaceQuai espaceQuai) {
-        this.espaceQuai = espaceQuai;
-    }
-
     public EspaceVente getEspaceVente() {
         return espaceVente;
     }
 
-    public void setEspaceVente(EspaceVente espaceVente) {
-        this.espaceVente = espaceVente;
-    }
-
     public static void main(String[] args){
         Gare g = new Gare();
-
-        g.trainsPrévus = new ArrayList<>();
-        g.voyageursEnGare = new ArrayList<>();
         for(int i = 0; i<3; i++){
             g.trainsPrévus.add(new Train(i, i*5+1, 10, 5000, g));
         }

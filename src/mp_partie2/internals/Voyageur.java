@@ -14,6 +14,11 @@ public class Voyageur extends Thread{
 
     public EtatVoyageur etat;
 
+    /**
+     *
+     * @param nom
+     * @param gare
+     */
     public Voyageur(String nom, Gare gare) {
         this.gare = gare;
         this.nom = nom;
@@ -21,7 +26,9 @@ public class Voyageur extends Thread{
     }
 
     /**
-     * Le voyageur essaie d'acheter un ticket, s'il en achete un il peut monter à bord sinon il est triste et s'en va
+     * Lancement du processus d'action des voyageurs.
+     * Un voyageur achete un ticket et s'il n'y en a plus il est triste
+     * Il monte dans un train s'il y en a un de disponible et sinon, il attends
      */
     @Override
     public void run() {
@@ -46,17 +53,5 @@ public class Voyageur extends Thread{
 
     public String getNom() {
         return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public Gare getGare() {
-        return gare;
-    }
-
-    public void setGare(Gare gare) {
-        this.gare = gare;
     }
 }

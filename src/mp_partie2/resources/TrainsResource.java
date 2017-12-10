@@ -68,19 +68,27 @@ public class TrainsResource extends ServerResource{
             throws Exception
     {
         JSONObject object = representation.getJsonObject();
-        String name = object.getString("name");
-        int idTrain = object.getInt("id");;
+        int idTrain = gare.getTrainsPrévus().size()+1;
         int vitesse = object.getInt("vitesse");
         int capacite = object.getInt("capacite");
         int tmpsArret= object.getInt("temps_arret");
+
+
+        JSONObject resultObject = new JSONObject();
+
+        //Si la vitesse du train n'est pas comprise entre 50 et 300 km/h renvoie une erreur
+        if(vitesse < 50 || vitesse > 300){
+            resultObject.put("erreur", "La vitesse doit être comprise entre 50 et 300");
+            JsonRepresentation result = new JsonRepresentation(resultObject);
+            return result;
+        }
 
         // Save the user
         Train train = new Train(idTrain, vitesse, capacite,tmpsArret ,this.gare);
         gare.addTrain(train);
 
         // generate result
-        JSONObject resultObject = new JSONObject();
-        resultObject.put("nom", train.getName());
+
         resultObject.put("id", train.getidTrain());
         resultObject.put("vitesse", train.getVitesse());
         resultObject.put("capacité", train.getCapacite());

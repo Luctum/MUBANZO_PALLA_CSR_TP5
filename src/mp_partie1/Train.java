@@ -1,7 +1,6 @@
 package mp_partie1;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Train extends Thread{
@@ -14,6 +13,13 @@ public class Train extends Thread{
 
     private List<Voyageur> voyageurs;
 
+    /**
+     * @param idTrain
+     * @param vitesse
+     * @param capacite
+     * @param tmpsArret
+     * @param gare
+     */
     public Train(int idTrain, int vitesse, int capacite, int tmpsArret, Gare gare) {
         this.gare = gare;
         this.idTrain = idTrain;
@@ -40,24 +46,8 @@ public class Train extends Thread{
         return idTrain;
     }
 
-    public void setidTrain(int idTrain) {
-        this.idTrain = idTrain;
-    }
-
     public int getVitesse() {
         return vitesse;
-    }
-
-    public void setVitesse(int vitesse) {
-        this.vitesse = vitesse;
-    }
-
-    public int getCapacite() {
-        return capacite;
-    }
-
-    public void setCapacite(int capacite) {
-        this.capacite = capacite;
     }
 
     public boolean resteDeLaPlace(){
@@ -66,10 +56,6 @@ public class Train extends Thread{
 
     public int getTmpsArret() {
         return tmpsArret;
-    }
-
-    public void setTmpsArret(int tmpsArret) {
-        this.tmpsArret = tmpsArret;
     }
 
     public void addVoyageurs(Voyageur v) {

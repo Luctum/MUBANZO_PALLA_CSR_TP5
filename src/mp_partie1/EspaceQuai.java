@@ -17,22 +17,18 @@ public class EspaceQuai {
         this.trainEnQuai = new ArrayList<>();
     }
 
-    public int getNbVoie() {
-        return nbVoie;
-    }
-
-    public void setNbVoie(int nbVoie) {
-        this.nbVoie = nbVoie;
-    }
-
+    /**
+     * @return le nombre de voies libres
+     */
     public int nbVoiesLibres(){
         return nbVoie - this.trainEnQuai.size();
     }
 
-    public List<Train> getTrainsEnQuai() {
-        return this.trainEnQuai;
-    }
-
+    /**
+     * Ajout un train à la liste des trains si jamais une voie est disponible
+     * @param train
+     * @throws InterruptedException
+     */
     public synchronized void addTrain(Train train) throws InterruptedException {
         while(nbVoiesLibres() < 1) {
             wait();

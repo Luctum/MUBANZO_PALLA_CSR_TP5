@@ -42,7 +42,7 @@ public class VoyageursResource extends ServerResource{
         for (Voyageur voyageur : voyageurs)
         {
             JSONObject current = new JSONObject();
-            current.put("nom", voyageur.getName());
+            current.put("nom", voyageur.getNom());
             current.put("etat", voyageur.etat);
             jsonUsers.add(current);
 
@@ -58,11 +58,11 @@ public class VoyageursResource extends ServerResource{
      * @throws Exception
      */
     @Post("json")
-    public Representation createTrain(JsonRepresentation representation)
+    public Representation createVoyageur(JsonRepresentation representation)
             throws Exception
     {
         JSONObject object = representation.getJsonObject();
-        String name = object.getString("name");
+        String name = object.getString("nom");
 
         // Save the user
         Voyageur voyageur = new Voyageur(name, this.gare);
@@ -70,7 +70,7 @@ public class VoyageursResource extends ServerResource{
 
         // generate result
         JSONObject resultObject = new JSONObject();
-        resultObject.put("name", voyageur.getName());
+        resultObject.put("nom", voyageur.getNom());
         resultObject.put("etat", voyageur.etat);
         JsonRepresentation result = new JsonRepresentation(resultObject);
         return result;
