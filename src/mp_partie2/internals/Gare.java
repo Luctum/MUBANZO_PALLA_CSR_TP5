@@ -1,16 +1,17 @@
-package mp_partie1;
+package mp_partie2.internals;
 
+
+import org.restlet.Application;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gare{
+public class Gare {
 
     private EspaceQuai espaceQuai;
     private EspaceVente espaceVente;
     private List<Train> trainsPrévus;
     private List<Voyageur> voyageursEnGare;
-
 
     public Gare() {
         this.espaceVente = new EspaceVente(80, 100);
@@ -21,16 +22,26 @@ public class Gare{
         return espaceQuai;
     }
 
-    public void setEspaceQuai(EspaceQuai espaceQuai) {
-        this.espaceQuai = espaceQuai;
-    }
-
     public EspaceVente getEspaceVente() {
         return espaceVente;
     }
 
-    public void setEspaceVente(EspaceVente espaceVente) {
-        this.espaceVente = espaceVente;
+    public List<Train> getTrainsPrévus() {
+        return trainsPrévus;
+    }
+
+    public void addTrain(Train t) {
+        this.trainsPrévus.add(t);
+        t.start();
+    }
+
+    public List<Voyageur> getVoyageursEnGare() {
+        return voyageursEnGare;
+    }
+
+    public void addVoyageur(Voyageur v) {
+        this.voyageursEnGare.add(v);
+        v.start();
     }
 
     public static void main(String[] args){
@@ -48,7 +59,6 @@ public class Gare{
         g.voyageursEnGare.forEach(Voyageur::start);
         //Les trains essaient d'entrer en quai
         g.trainsPrévus.forEach(Train::start);
-
     }
 
 }
