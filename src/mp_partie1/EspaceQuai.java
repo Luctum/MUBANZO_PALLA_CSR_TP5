@@ -37,22 +37,14 @@ public class EspaceQuai {
         while(nbVoiesLibres() < 1) {
             wait();
         }
-        wait(10000/train.getVitesse());
+        Thread.sleep(1000/train.getVitesse());
         this.trainEnQuai.add(train);
         notifyAll();
     }
 
-    public synchronized void processTrain(Train train) throws InterruptedException {
-        addTrain(train);
-        System.out.println("Le train est entré en gare:" + train.getidTrain());
-        wait(train.getTmpsArret());
-        removeTrain(train);
-        System.out.println("Le train est parti de la gare" + train.getidTrain() + " avec " + train.getVoyageur().size() + " voyageurs");
-    }
-
     public void removeTrain(Train train) {
         this.trainEnQuai.remove(train);
-        notify();
+        notifyAll();
     }
 
     /**
@@ -68,9 +60,9 @@ public class EspaceQuai {
                 Train t = it.next();
                 if(t.resteDeLaPlace()){
                     t.addVoyageurs(v);
+                    System.out.println(v.getNom() + " est entré dans le train " + t.getidTrain());
                     trainDispo = true;
                 }
-
             }
             if(!trainDispo){
                 System.out.println(v.getNom() + " attends qu'un train arrive...");

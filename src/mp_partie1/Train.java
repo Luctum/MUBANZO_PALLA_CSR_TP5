@@ -28,7 +28,12 @@ public class Train extends Thread{
     @Override
     public void run() {
         try {
-            this.gare.getEspaceQuai().processTrain(this);
+            this.gare.getEspaceQuai().addTrain(this);
+            System.out.println("Le train est entré en gare:" + this.getidTrain());
+            this.gare.getEspaceQuai().addTrain(this);
+            Thread.sleep(this.getTmpsArret());
+            this.gare.getEspaceQuai().removeTrain(this);
+            System.out.println("Le train est parti de la gare" + this.getidTrain() + " avec " + this.getVoyageur().size() + " voyageurs");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

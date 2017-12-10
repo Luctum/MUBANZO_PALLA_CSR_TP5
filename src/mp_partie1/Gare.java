@@ -37,16 +37,17 @@ public class Gare{
 
         g.trainsPrévus = new ArrayList<>();
         g.voyageursEnGare = new ArrayList<>();
-        for(int i = 0; i<5; i++){
-            g.trainsPrévus.add(new Train(i, i*5+1, 1, 20000, g));
+        for(int i = 0; i<3; i++){
+            g.trainsPrévus.add(new Train(i, i*5+1, 10, 5000, g));
         }
-        for(int i = 0; i<100; i++){
+        for(int i = 0; i<30; i++){
             g.voyageursEnGare.add(new Voyageur("Voyageur"+i, g));
         }
-        //Les trains essaient d'entrer en quai
-        g.trainsPrévus.forEach(Train::start);
         //Les voyageurs essaient d'obtenir un ticket + de monter dans les trains
         g.voyageursEnGare.forEach(Voyageur::start);
+        //Les trains essaient d'entrer en quai
+        g.trainsPrévus.forEach(Train::start);
+
     }
 
 }
